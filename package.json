@@ -1,0 +1,23 @@
+{
+  "name": "basic-proxy",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx --watch --env-file=.env main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-proxy": "^1.18.1",
+    "http-proxy-middleware": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/node": "^20.12.7",
+    "debug": "^4.3.4",
+    "tsx": "^4.7.2"
+  }
+}
