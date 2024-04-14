@@ -19,33 +19,37 @@ const styles = stylex.create({
 })
 
 type Address = {
-  name: string;
-  ip: string;
+  name: string
+  ip: string
 }
 
 function App(): JSX.Element {
   const [ip, setIp] = React.useState<Address[]>([])
 
-  React.useEffect(() => {
-    window.electron.ipcRenderer.invoke('get-ip').then((ip: string[]) => {
-      console.log("🚀 ~ window.electron.ipcRenderer.invoke ~ ip:", typeof ip)
-      setIp(ip)
+  const updateIp = () => {
+    window.electron.ipcRenderer.invoke('get-ip').then((addresses: Address[]) => {
+      setIp(addresses)
     })
-  }, [])
+  }
+
+  React.useEffect(() => {
+    updateIp()
+  }, [updateIp])
 
   return (
-    <>
-      <h1 className={styles.base}>Hello Electron!</h1>
+    <main>
+      <h1>Proxy Address List</h1>
+      <button onClick={updateIp}>새로고침</button>
       {ip.map((address) => {
         return (
-          <p key={address.name} className={styles.highlighted}>
-            <span className={styles.bold}>{address.name}</span> Your IP address is: {address.ip}
+          <p key={address.name} {...stylex.props(styles.base)}>
+            <span {...stylex.props(styles.bold)}>{address.name}</span> Your IP address is:{' '}
+            {address.ip}
           </p>
         )
       })}
-
       <Versions></Versions>
-    </>
+    </main>
   )
 }
 
