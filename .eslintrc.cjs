@@ -1,4 +1,8 @@
 module.exports = {
+  plugins: ['@stylexjs'],
+  rules: {
+    '@stylexjs/valid-styles': 'error'
+  },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',

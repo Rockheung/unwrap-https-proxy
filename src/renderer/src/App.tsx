@@ -1,6 +1,19 @@
 import Versions from './components/Versions'
 import electronLogo from './assets/electron.svg'
 
+import * as stylex from '@stylexjs/stylex';
+
+const styles = stylex.create({
+  base: {
+    fontSize: 16,
+    lineHeight: 1.5,
+    color: 'grey',
+  },
+  highlighted: {
+    color: 'rebeccapurple',
+  },
+});
+
 function App(): JSX.Element {
   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
@@ -11,6 +24,9 @@ function App(): JSX.Element {
       <div className="text">
         Build an Electron app with <span className="react">React</span>
         &nbsp;and <span className="ts">TypeScript</span>
+      </div>
+      <div {...stylex.props(styles.base, styles.highlighted)}>
+        whet
       </div>
       <p className="tip">
         Please try pressing <code>F12</code> to open the devTool

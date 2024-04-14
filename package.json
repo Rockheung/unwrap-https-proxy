@@ -22,12 +22,17 @@
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
-    "@electron-toolkit/utils": "^3.0.0"
+    "@electron-toolkit/utils": "^3.0.0",
+    "http-proxy": "^1.18.1",
+    "http-proxy-middleware": "^3.0.0"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^2.0.0",
     "@electron-toolkit/eslint-config-ts": "^1.0.1",
     "@electron-toolkit/tsconfig": "^1.0.1",
+    "@stylexjs/dev-runtime": "^0.5.1",
+    "@stylexjs/eslint-plugin": "^0.5.1",
+    "@stylexjs/rollup-plugin": "^0.5.1",
     "@types/node": "^18.19.9",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
