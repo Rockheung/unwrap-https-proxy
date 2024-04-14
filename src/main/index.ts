@@ -1,7 +1,26 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
+import os from 'os'
 import icon from '../../resources/icon.png?asset'
+
+
+function *getNetworkInterfaces() {
+  const interfaces = os.networkInterfaces();
+
+  // Find a non-loopback, IPv4 address (adjust this logic based on your network setup)
+  for (const name of Object.keys(interfaces)) {
+    for (const netInterface of interfaces[name] ?? []) {
+      if (netInterface.family === 'IPv4' && !netInterface.internal) {
+        yield {
+          name: name,
+          ip: netInterface.address
+        };
+      }
+    }
+  }
+}
+
 
 function createWindow(): void {
   // Create the browser window.
@@ -51,6 +70,10 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
+
+  ipcMain.handle('get-ip', () => {
+    return [...getNetworkInterfaces()];
+  });
 
   createWindow()
 

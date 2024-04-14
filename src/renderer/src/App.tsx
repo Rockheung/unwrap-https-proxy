@@ -1,48 +1,49 @@
+import React from 'react'
 import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
-
-import * as stylex from '@stylexjs/stylex';
+import * as stylex from '@stylexjs/stylex'
 
 const styles = stylex.create({
   base: {
     fontSize: 16,
     lineHeight: 1.5,
-    color: 'grey',
+    color: 'grey'
+  },
+  bold: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'red'
   },
   highlighted: {
-    color: 'rebeccapurple',
-  },
-});
+    color: 'rebeccapurple'
+  }
+})
+
+type Address = {
+  name: string;
+  ip: string;
+}
 
 function App(): JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
+  const [ip, setIp] = React.useState<Address[]>([])
+
+  React.useEffect(() => {
+    window.electron.ipcRenderer.invoke('get-ip').then((ip: string[]) => {
+      console.log("🚀 ~ window.electron.ipcRenderer.invoke ~ ip:", typeof ip)
+      setIp(ip)
+    })
+  }, [])
 
   return (
     <>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-        &nbsp;and <span className="ts">TypeScript</span>
-      </div>
-      <div {...stylex.props(styles.base, styles.highlighted)}>
-        whet
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
-        </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
-      </div>
+      <h1 className={styles.base}>Hello Electron!</h1>
+      {ip.map((address) => {
+        return (
+          <p key={address.name} className={styles.highlighted}>
+            <span className={styles.bold}>{address.name}</span> Your IP address is: {address.ip}
+          </p>
+        )
+      })}
+
       <Versions></Versions>
     </>
   )
