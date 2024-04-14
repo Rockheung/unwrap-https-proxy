@@ -32,7 +32,7 @@ function App(): JSX.Element {
   const [ip, setIp] = React.useState<Address[]>([])
   const [targetHosts, setTargetHosts] = React.useState<string[]>([])
   const [headers, setHeaders] = React.useState<HttpHeader[]>([])
-  console.log("🚀 ~ App ~ headers:", headers)
+  console.log('🚀 ~ App ~ headers:', headers)
   const [isProxyEnabled, setIsProxyEnabled] = React.useState<boolean>(false)
 
   const applyProxy = () => {
@@ -52,9 +52,9 @@ function App(): JSX.Element {
 
   const addHeader = () => {
     setHeaders(([...prevHeaders]) => {
-      debugger;
+      debugger
       return [...prevHeaders, { name: '', value: '' }]
-  })
+    })
   }
 
   const updateIp = () => {
@@ -81,7 +81,7 @@ function App(): JSX.Element {
         </label>
         <div>
           Headers:
-          {(headers.length === 0 ? [{name: '', value: ''}] : headers).map((header, idx) => {
+          {(headers.length === 0 ? [{ name: '', value: '' }] : headers).map((header, idx) => {
             return (
               <div key={idx} style={{ display: 'flex', flexDirection: 'row' }}>
                 <input
@@ -97,8 +97,8 @@ function App(): JSX.Element {
                           name: e.target.value
                         },
                         ...headers.slice(idx + 1)
-                      ]}
-                    )
+                      ]
+                    })
                   }}
                 />
                 <input
@@ -114,12 +114,16 @@ function App(): JSX.Element {
                           value: e.target.value
                         },
                         ...headers.slice(idx + 1)
-                      ]}
-                    )
+                      ]
+                    })
                   }}
                 />
-                <button onClick={() => deleteHeader(idx)}>[X]</button>
-                <button onClick={addHeader}>[+]</button>
+                <button type="button" onClick={() => deleteHeader(idx)}>
+                  [X]
+                </button>
+                <button type="button" onClick={addHeader}>
+                  [+]
+                </button>
               </div>
             )
           })}
