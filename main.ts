@@ -82,7 +82,7 @@ const rewriteReferer = (
 
 proxy.on("proxyReq", (proxyReq, req, res) => {
   proxyReq.setHeader("IMWEB-USER", "heungjun");
-  proxyReq.setHeader("developer-console", "Y");
+  // proxyReq.setHeader("developer-console", "Y");
   proxyReq.removeHeader("accept-encoding");
 });
 
