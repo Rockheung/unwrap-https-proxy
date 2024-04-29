@@ -4,10 +4,8 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import os from 'os'
 import icon from '../../resources/icon.png?asset'
 
-
-function *getNetworkInterfaces() {
-  const interfaces = os.networkInterfaces();
-
+function* getNetworkInterfaces(): Generator<{ name: string; ip: string }> {
+  const interfaces = os.networkInterfaces()
   // Find a non-loopback, IPv4 address (adjust this logic based on your network setup)
   for (const name of Object.keys(interfaces)) {
     for (const netInterface of interfaces[name] ?? []) {
@@ -15,12 +13,11 @@ function *getNetworkInterfaces() {
         yield {
           name: name,
           ip: netInterface.address
-        };
+        }
       }
     }
   }
 }
-
 
 function createWindow(): void {
   // Create the browser window.
@@ -72,8 +69,8 @@ app.whenReady().then(() => {
   ipcMain.on('ping', () => console.log('pong'))
 
   ipcMain.handle('get-ip', () => {
-    return [...getNetworkInterfaces()];
-  });
+    return [...getNetworkInterfaces()]
+  })
 
   createWindow()
 

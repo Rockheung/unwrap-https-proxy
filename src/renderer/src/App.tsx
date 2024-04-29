@@ -3,6 +3,26 @@ import Versions from './components/Versions'
 import * as stylex from '@stylexjs/stylex'
 
 const styles = stylex.create({
+  header: {
+    display: 'flex',
+    height: '50px'
+  },
+  headerButton: {
+    height: '100%',
+    width: '50px',
+    backgroundColor: 'black',
+    color: 'white'
+  },
+  inputDomain: {
+    flex: '1',
+    height: '100%',
+    padding: '0 10px',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'grey',
+    borderRadius: 0,
+    outline: 'none'
+  },
   base: {
     fontSize: 16,
     lineHeight: 1.5,
@@ -52,7 +72,6 @@ function App(): JSX.Element {
 
   const addHeader = () => {
     setHeaders(([...prevHeaders]) => {
-      debugger
       return [...prevHeaders, { name: '', value: '' }]
     })
   }
@@ -69,7 +88,18 @@ function App(): JSX.Element {
 
   return (
     <main>
-      <h1>Proxy Address List</h1>
+      <header>
+        <form {...stylex.props(styles.header)}>
+          <button {...stylex.props(styles.headerButton)} type="button">reset</button>
+          <button {...stylex.props(styles.headerButton)} type="submit">run</button>
+          <input
+            {...stylex.props(styles.inputDomain)}
+            type="text"
+            placeholder="Enter a target domain"
+          />
+        </form>
+      </header>
+      {/* <h1>Proxy Address List</h1>
       <form>
         <label>
           Target Hosts:
@@ -141,7 +171,7 @@ function App(): JSX.Element {
           </p>
         )
       })}
-      <Versions></Versions>
+      <Versions></Versions> */}
     </main>
   )
 }

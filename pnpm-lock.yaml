@@ -11,6 +11,9 @@ dependencies:
   '@electron-toolkit/utils':
     specifier: ^3.0.0
     version: 3.0.0(electron@28.3.0)
+  dns2:
+    specifier: ^2.1.0
+    version: 2.1.0
   http-proxy:
     specifier: ^1.18.1
     version: 1.18.1(debug@4.3.4)
@@ -2265,6 +2268,10 @@ packages:
       verror: 1.10.1
     dev: true
     optional: true
+
+  /dns2@2.1.0:
+    resolution: {integrity: sha512-m27K11aQalRbmUs7RLaz6aPyceLjAoqjPRNTdE7qUouQpl+PC8Bi67O+i9SuJUPbQC8dxFrczAxfmTPuTKHNkw==}
+    dev: false
 
   /doctrine@2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}

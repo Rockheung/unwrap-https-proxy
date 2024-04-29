@@ -24,6 +24,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
+    "dns2": "^2.1.0",
     "http-proxy": "^1.18.1",
     "http-proxy-middleware": "^3.0.0"
   },

@@ -19,7 +19,7 @@ const proxy = httpProxy.createProxyServer({
   // cookieDomainRewrite: false,
 });
 
-const targetHost = "bluemoon100.imtest.me";
+const targetHost = "dentistestore.kr";
 
 // show
 
@@ -82,7 +82,7 @@ const rewriteReferer = (
 
 proxy.on("proxyReq", (proxyReq, req, res) => {
   proxyReq.setHeader("IMWEB-USER", "heungjun");
-  // proxyReq.setHeader("developer-console", "Y");
+  proxyReq.setHeader("developer-console", "Y");
   proxyReq.removeHeader("accept-encoding");
 });
 
